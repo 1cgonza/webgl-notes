@@ -1,5 +1,6 @@
-const vertexShader = require('./shaders/draw.vs');
-const fragmShader = require('./shaders/draw.fs');
+import vertexShader from '../shaders/draw.vs';
+import fragmShader from '../shaders/draw.fs';
+import Shader from '../utils/Shader';
 
 var canvas = document.getElementById('canvas');
 var gl = canvas.getContext('webgl');
@@ -26,6 +27,10 @@ function resize() {
 }
 
 function init() {
+  var shader = new Shader(gl, vertexShader, fragmShader);
+
+  shader.bind();
+
   gl.disable(gl.DEPTH_TEST);
   gl.disable(gl.CULL_FACE);
   gl.enable(gl.BLEND);
